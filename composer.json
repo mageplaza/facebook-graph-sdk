@@ -1,5 +1,6 @@
 {
     "name": "mageplaza/facebook-graph-sdk",
+    "version": "1.0.1",
     "description": "Facebook SDK for PHP",
     "keywords": ["facebook", "sdk"],
     "type": "library",
