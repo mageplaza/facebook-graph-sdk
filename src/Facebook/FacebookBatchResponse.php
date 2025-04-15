@@ -26,6 +26,7 @@ namespace Facebook;
 use ArrayIterator;
 use IteratorAggregate;
 use ArrayAccess;
+use ReturnTypeWillChange;
 
 /**
  * Class FacebookBatchResponse
@@ -116,7 +117,7 @@ class FacebookBatchResponse extends FacebookResponse implements IteratorAggregat
     /**
      * @inheritdoc
      */
-    public function getIterator()
+    #[ReturnTypeWillChange] public function getIterator()
     {
         return new ArrayIterator($this->responses);
     }
@@ -124,7 +125,7 @@ class FacebookBatchResponse extends FacebookResponse implements IteratorAggregat
     /**
      * @inheritdoc
      */
-    public function offsetSet($offset, $value)
+    #[ReturnTypeWillChange] public function offsetSet($offset, $value)
     {
         $this->addResponse($offset, $value);
     }
@@ -132,7 +133,7 @@ class FacebookBatchResponse extends FacebookResponse implements IteratorAggregat
     /**
      * @inheritdoc
      */
-    public function offsetExists($offset)
+    #[ReturnTypeWillChange] public function offsetExists($offset)
     {
         return isset($this->responses[$offset]);
     }
@@ -140,7 +141,7 @@ class FacebookBatchResponse extends FacebookResponse implements IteratorAggregat
     /**
      * @inheritdoc
      */
-    public function offsetUnset($offset)
+    #[ReturnTypeWillChange] public function offsetUnset($offset)
     {
         unset($this->responses[$offset]);
     }
@@ -148,7 +149,7 @@ class FacebookBatchResponse extends FacebookResponse implements IteratorAggregat
     /**
      * @inheritdoc
      */
-    public function offsetGet($offset)
+    #[ReturnTypeWillChange] public function offsetGet($offset)
     {
         return isset($this->responses[$offset]) ? $this->responses[$offset] : null;
     }

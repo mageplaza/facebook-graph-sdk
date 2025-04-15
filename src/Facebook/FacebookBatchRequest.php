@@ -28,6 +28,7 @@ use IteratorAggregate;
 use ArrayAccess;
 use Facebook\Authentication\AccessToken;
 use Facebook\Exceptions\FacebookSDKException;
+use ReturnTypeWillChange;
 
 /**
  * Class BatchRequest
@@ -54,7 +55,7 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
      * @param AccessToken|string|null $accessToken
      * @param string|null             $graphVersion
      */
-    public function __construct(FacebookApp $app = null, array $requests = [], $accessToken = null, $graphVersion = null)
+    public function __construct(?FacebookApp $app = null, array $requests = [], $accessToken = null, $graphVersion = null)
     {
         parent::__construct($app, $accessToken, 'POST', '', [], null, $graphVersion);
 
@@ -262,7 +263,7 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
      *
      * @return ArrayIterator
      */
-    public function getIterator()
+    #[ReturnTypeWillChange] public function getIterator()
     {
         return new ArrayIterator($this->requests);
     }
@@ -270,7 +271,7 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
     /**
      * @inheritdoc
      */
-    public function offsetSet($offset, $value)
+    #[ReturnTypeWillChange] public function offsetSet($offset, $value)
     {
         $this->add($value, $offset);
     }
@@ -278,7 +279,7 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
     /**
      * @inheritdoc
      */
-    public function offsetExists($offset)
+    #[ReturnTypeWillChange] public function offsetExists($offset)
     {
         return isset($this->requests[$offset]);
     }
@@ -286,7 +287,7 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
     /**
      * @inheritdoc
      */
-    public function offsetUnset($offset)
+    #[ReturnTypeWillChange] public function offsetUnset($offset)
     {
         unset($this->requests[$offset]);
     }
@@ -294,7 +295,7 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
     /**
      * @inheritdoc
      */
-    public function offsetGet($offset)
+    #[ReturnTypeWillChange] public function offsetGet($offset)
     {
         return isset($this->requests[$offset]) ? $this->requests[$offset] : null;
     }
